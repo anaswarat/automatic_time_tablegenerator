@@ -1,0 +1,116 @@
+{% extends "layout_admin.html" %}
+{% block content %}
+
+<div class="row" style="margin-bottom: 0;">
+	<div class="col s12" style="margin-top:0; padding: 0;">
+		<ul class="tabs">
+	        <li class="tab col s6">
+	        	<a href="#semester-select" class="indigo-text text-darken-4">SELECT SEMESTER</a>
+	        </li>
+	        <li class="tab col s6">
+	        	<a href="#time-table" class="indigo-text text-darken-4">TIME TABLE</a>
+	        </li>
+	    </ul>
+	</div>
+</div>
+
+<div class="col s12" id="semester-select">
+	<div class="row">
+		<div class="col s12 center">
+			<h5 style="text-transform: uppercase; font-weight: 600; text-decoration: underline;" class="indigo-text text-darken-4">{{departmentDetails['name']}} - SELECT SEMESTERS</h5>
+		</div>
+		<div class="col s10 offset-s1">
+			<form action="{{url_for('adminGenerateTimeTable')}}" method="post">
+				<div class="row">
+					{% for i in semesterList %}
+						<div class="col s6 center">
+							<p>
+						      <label>
+						        <input type="checkbox" class="filled-in" name="semList" value="{{i['semester']}}" />
+						        <span class="black-text" style="font-weight: bold;">{{i['semName']}}</span>
+						      </label>
+						    </p>
+						</div>
+					{% endfor %}
+					<div class="col s12 center">
+						<input type="hidden" name="deptID" value="{{deptID}}">
+						<button class="btn indigo darken-4">GENERATE TIME TABLE</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		{% if warning != '' %}
+			<div class="col s12 center">
+				<p class="white-text" style="font-weight: bold;">{{warning}}</p>
+			</div>
+		{% endif %}
+	</div>
+</div>
+
+<div class="col s12" id="time-table">
+	<div class="row">
+		{% for i in timeTable %}
+			<div class="col s12 center">
+				<h5 style="text-transform: uppercase; font-weight: 600; text-decoration: underline;" class="indigo-text text-darken-4">{{departmentDetails['name']}} - {{i}} - TIME TABLE</h5>
+			</div>
+			<div class="col l8 s10 offset-l2 offset-s1">
+				<table class="centered highlight">
+					<thead>
+						<tr class="yellow-text text-accent-4">
+							<th></th>
+							<th>I</th>
+							<th>II</th>
+							<th>III</th>
+							<th>IV</th>
+							<th>V</th>
+						</tr>
+					</thead>
+					<tbody>
+							<tr style="font-weight: 550;" class="grey-text text-lighten-5">
+								<td style="text-transform: capitalize;" class="yellow-text text-accent-4">MON</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['mon_1hr']['subjectName']}} - {{timeTable[i]['mon_1hr']['lectureName']}}</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['mon_2hr']['subjectName']}} - {{timeTable[i]['mon_2hr']['lectureName']}}</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['mon_3hr']['subjectName']}} - {{timeTable[i]['mon_3hr']['lectureName']}}</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['mon_4hr']['subjectName']}} - {{timeTable[i]['mon_4hr']['lectureName']}}</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['mon_5hr']['subjectName']}} - {{timeTable[i]['mon_5hr']['lectureName']}}</td>
+							</tr>
+							<tr style="font-weight: 550;" class="grey-text text-lighten-5">
+								<td style="text-transform: capitalize;" class="yellow-text text-accent-4">TUE</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['tue_1hr']['subjectName']}} - {{timeTable[i]['tue_1hr']['lectureName']}}</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['tue_2hr']['subjectName']}} - {{timeTable[i]['tue_2hr']['lectureName']}}</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['tue_3hr']['subjectName']}} - {{timeTable[i]['tue_3hr']['lectureName']}}</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['tue_4hr']['subjectName']}} - {{timeTable[i]['tue_4hr']['lectureName']}}</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['tue_5hr']['subjectName']}} - {{timeTable[i]['tue_5hr']['lectureName']}}</td>
+							</tr>
+							<tr style="font-weight: 550;" class="grey-text text-lighten-5">
+								<td style="text-transform: capitalize;" class="yellow-text text-accent-4">WED</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['wed_1hr']['subjectName']}} - {{timeTable[i]['wed_1hr']['lectureName']}}</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['wed_2hr']['subjectName']}} - {{timeTable[i]['wed_2hr']['lectureName']}}</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['wed_3hr']['subjectName']}} - {{timeTable[i]['wed_3hr']['lectureName']}}</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['wed_4hr']['subjectName']}} - {{timeTable[i]['wed_4hr']['lectureName']}}</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['wed_5hr']['subjectName']}} - {{timeTable[i]['wed_5hr']['lectureName']}}</td>
+							</tr>
+							<tr style="font-weight: 550;" class="grey-text text-lighten-5">
+								<td style="text-transform: capitalize;" class="yellow-text text-accent-4">THU</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['thu_1hr']['subjectName']}} - {{timeTable[i]['thu_1hr']['lectureName']}}</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['thu_2hr']['subjectName']}} - {{timeTable[i]['thu_2hr']['lectureName']}}</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['thu_3hr']['subjectName']}} - {{timeTable[i]['thu_3hr']['lectureName']}}</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['thu_4hr']['subjectName']}} - {{timeTable[i]['thu_4hr']['lectureName']}}</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['thu_5hr']['subjectName']}} - {{timeTable[i]['thu_5hr']['lectureName']}}</td>
+							</tr>
+							<tr style="font-weight: 550;" class="grey-text text-lighten-5">
+								<td style="text-transform: capitalize;" class="yellow-text text-accent-4">FRI</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['fri_1hr']['subjectName']}} - {{timeTable[i]['fri_1hr']['lectureName']}}</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['fri_2hr']['subjectName']}} - {{timeTable[i]['fri_2hr']['lectureName']}}</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['fri_3hr']['subjectName']}} - {{timeTable[i]['fri_3hr']['lectureName']}}</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['fri_4hr']['subjectName']}} - {{timeTable[i]['fri_4hr']['lectureName']}}</td>
+								<td style="text-transform: capitalize;">{{timeTable[i]['fri_5hr']['subjectName']}} - {{timeTable[i]['fri_5hr']['lectureName']}}</td>
+							</tr>
+					</tbody>
+				</table>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+{% endblock %}

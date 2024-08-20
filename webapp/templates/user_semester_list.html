@@ -1,0 +1,28 @@
+{% extends "layout_user.html" %}
+{% block content %}
+<div class="row">
+	<div class="col s12 center">
+		<h5 class="indigo-text text-darken-4" style="text-transform: uppercase; font-weight: bold; text-decoration: underline;">{{departmentDetails['name']}} - SEMESTER LIST</h5>
+	</div>
+	<div class="col l8 s10 offset-l2 offset-s1">
+		<table class="centered highlight">
+			<thead>
+				<tr>
+					<th>Semester No</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for i in semesterList %}
+					<tr style="font-weight: 500;" class="blue-grey-text text-lighten-2">
+						<td style="text-transform: capitalize; padding-top: .5rem; padding-bottom: .5rem;">{{i['semName']}}</td>
+						<td style="padding-top: .5rem; padding-bottom: .5rem;">
+							<a href="{{url_for('userSubjectList',deptID=deptID,semester=i['semester'])}}" class="btn indigo darken-4"><i class="material-icons white-text left">auto_stories</i>SUBJECTS</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}

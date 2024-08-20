@@ -1,0 +1,160 @@
+{% extends "layout_user.html" %}
+{% block content %}
+
+<div class="row" style="margin-bottom: 0;">
+	<div class="col s12" style="padding: 0;">
+		<div class="row" style="margin-bottom: 0;">
+			<div class="col s12" style="margin-top:.1rem;">
+				<ul class="tabs">
+			        <li class="tab col s4">
+			        	<a href="#lecture-profile" class="indigo-text text-darken-4">PROFILE</a>
+			        </li>
+			        <li class="tab col s4">
+			        	<a href="#lecture-days" class="indigo-text text-darken-4">AVAILABLE DAYS</a>
+			        </li>
+			        <li class="tab col s4">
+			        	<a href="#lecture-subjects" class="indigo-text text-darken-4">SUBJECTS</a>
+			        </li>
+			    </ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="lecture-profile" class="col s12">
+	<div class="row">
+		<div class="col s8 offset-s2 card-panel grey lighten-2" style="margin-top: 0rem; padding: 1rem;">
+			<div class="row">
+				<div class="col s12 center">
+					<img src="{{lectureDetails['imgUrl']}}" class="circle" style="width: 6rem; height: 6rem;">
+				</div>
+				<div class="col s12 center">
+					<h5 class="indigo-text text-darken-4" style="font-weight: bold; text-transform: capitalize; margin-top: .1rem; margin-bottom: 0">{{lectureDetails['name']}}</h5>
+					<p class="blue-grey-text text-lighten-1" style="margin: 0;">{{lectureDetails['email']}}</p>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Name</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{lectureDetails['name']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Department</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{lectureDetails['departmentDetails']['name']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Designation</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{lectureDetails['designation']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Gender</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{lectureDetails['gender']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Date of Birth</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{lectureDetails['dob']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Email</span>
+					<span class="right" style="font-weight:bold;">{{lectureDetails['email']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Mobile Number</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{lectureDetails['mobileNumber']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Address</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{lectureDetails['address']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="lecture-days" class="col s12">
+	<div class="row">
+		<div class="col l8 s10 offset-l2 offset-s1">
+			<table class="centered highlight">
+				<thead>
+					<tr>
+						<th>Days</th>
+						<th>Availibility</th>
+					</tr>
+				</thead>
+				<tbody>
+						<tr style="font-weight: 500;" class="blue-grey-text text-lighten-2">
+							<td style="font-weight: bold;">Monday</td>
+							<td style="text-transform: capitalize; font-weight: bold;">{{lectureDetails['mon']}}</td>
+						</tr>
+						<tr style="font-weight: 500;" class="blue-grey-text text-lighten-2">
+							<td style="font-weight: bold;">Tuesday</td>
+							<td style="text-transform: capitalize; font-weight: bold;">{{lectureDetails['tue']}}</td>
+						</tr>
+						<tr style="font-weight: 500;" class="blue-grey-text text-lighten-2">
+							<td style="font-weight: bold;">Wednesday</td>
+							<td style="text-transform: capitalize; font-weight: bold;">{{lectureDetails['wed']}}</td>
+							<td>
+						</tr>
+						<tr style="font-weight: 500;" class="blue-grey-text text-lighten-2">
+							<td style="font-weight: bold;">Thursday</td>
+							<td style="text-transform: capitalize; font-weight: bold;">{{lectureDetails['thu']}}</td>
+						</tr>
+						<tr style="font-weight: 500;" class="blue-grey-text text-lighten-2">
+							<td style="font-weight: bold;">Friday</td>
+							<td style="text-transform: capitalize; font-weight: bold;">{{lectureDetails['fri']}}</td>
+						</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div id="lecture-subjects" class="col s12">
+	<div class="row">
+
+		<div class="col l8 s10 offset-l2 offset-s1">
+			<table class="centered highlight">
+				<thead>
+					<tr>
+						<th>Subject</th>
+						<th>Semester</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in lectureSubjects %}
+						<tr style="font-weight: 500;" class="blue-grey-text text-lighten-2">
+							<td style="text-transform: capitalize; font-weight: bold;">{{lectureSubjects[i]['name']}}</td>
+							<td style="text-transform: capitalize; font-weight: bold;">{{lectureSubjects[i]['sem']}}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>
+
+
+{% endblock %}

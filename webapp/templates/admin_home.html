@@ -1,0 +1,126 @@
+{% extends "layout_admin.html" %}
+{% block content %}
+<div class="row" style="margin-bottom: 0;">
+	<div class="col s12" style="padding: 0;">
+		<div class="row" style="margin-bottom: 0;">
+			<div class="col s12" style="margin-top:.1rem;">
+				<ul class="tabs">
+			        <li class="tab col s6">
+			        	<a href="#department-list" class="indigo-text text-darken-4">DEPARTMENTS</a>
+			        </li>
+			        <li class="tab col s6">
+			        	<a href="#department-add" class="indigo-text text-darken-4">DEPARTMENT REGISTRATION</a>
+			        </li>
+			    </ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="department-list" class="col s12">
+	<div class="row">
+		{% if warning != '' %}
+			<div class="col s12 center">
+				<p class="white-text" style="font-weight: bold;">{{warning}}</p>
+			</div>
+		{% endif %}
+		<div class="col l8 s10 offset-l2 offset-s1">
+			<table class="centered highlight">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Semesters</th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in departmentList %}
+						<tr style="font-weight: 500;" class="blue-grey-text text-lighten-2">
+							<td style="text-transform: capitalize; font-weight: bold;">{{departmentList[i]['name']}}</td>
+							<td style="text-transform: capitalize; font-weight: bold;">{{departmentList[i]['semCount']}}</td>
+							<td>
+								<a href="#modal-edit-{{i}}" class="btn indigo darken-4 modal-trigger">EDIT</a>
+							</td>
+							<td>
+								<a href="#modal-delete-{{i}}" class="btn indigo darken-4 modal-trigger">DELETE</a>
+							</td>
+							<td>
+								<a href="{{url_for('departmentSemesterList',deptID=i)}}" class="btn indigo darken-4">SUBJECTS</a>
+							</td>
+							<td>
+								<a href="{{url_for('lectureList',deptID=i)}}" class="btn indigo darken-4">LECTURES</a>
+							</td>
+							<td>
+								<a href="{{url_for('adminSemSelection',deptID=i)}}" id="h" class="btn red">TIME TABLE</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<div id="department-add" class="col s12">
+	<div class="row">
+		<div class="col l8 s10 offset-l2 offset-s1 card-panel grey lighten-2" style="margin-top: 1rem; padding: 1rem;">
+			<div class="row">
+				<div class="col s12 center">
+					<h5 class="indigo-text text-darken-4" style="text-decoration: underline; font-weight: bold;">DEPARTMENT REGISTRATION</h5>
+				</div>
+				<form action="{{url_for('departmentReg')}}" method="post">
+					<div class="input-field col s12">
+				        <i class="material-icons prefix">edit</i>
+				        <input id="department_name" type="text" class="validate" name='name'  pattern="[a-zA-Z\s]+"  title="Invalid Department Name" required>
+				        <label for="department_name">Department Name</label>
+			        </div>
+			        <div class="input-field col s12">
+				        <i class="material-icons prefix">123</i>
+				        <input id="sem_count" type="number" class="validate" name='semCount' required>
+				        <label for="sem_count">No of Semesters</label>
+			        </div>
+			      	<div class="col s12 center">
+			      		<button type="submit" class="btn indigo darken-4" style="font-weight: bold;">REGISTER</button>
+			      	</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% for i in departmentList %}
+	<div id="modal-delete-{{i}}" class="modal">
+	    <div class="modal-content">
+	      <h4 class="indigo-text text-darken-4">DELETE DEPARTMENT </h4>
+	      <p>Are you sure to delete this department?</p>
+	    </div>
+	    <div class="modal-footer">
+	    	<form action="{{url_for('departmentDelete')}}" method="post">
+	    		<input type="hidden" name="deptID" value="{{i}}">
+	    		<button type="submit" class="waves-effect waves-green btn-flat red-text">DELETE</button>
+	    	</form>
+	    </div>
+	</div>
+	<div id="modal-edit-{{i}}" class="modal">
+		<form action="{{url_for('departmentUpdate')}}" method="post">
+		    <div class="modal-content">
+		      <h4 class="indigo-text text-darken-4" style="text-transform: uppercase;">EDIT DEPARTMENT</h4>
+		      	<div class="input-field">
+			        <i class="material-icons prefix">edit</i>
+			        <input id="dept_name" type="text" class="validate" name='name' pattern="[a-zA-Z\s]+"  title="Invalid Department name" value="{{departmentList[i]['name']}}" required>
+			        <label for="dept_name">Department Name</label>
+		        </div>
+		        <div class="input-field">
+			        <i class="material-icons prefix">123</i>
+			        <input id="sem_cnt" type="number" class="validate" name='semCount' value="{{departmentList[i]['semCount']}}" required>
+			        <label for="sem_cnt">No of Semesters</label>
+		        </div>
+		    </div>
+		    <div class="modal-footer">
+	    		<input type="hidden" name="deptID" value="{{i}}">
+	    		<button type="submit" class="waves-effect waves-green btn-flat indigo-text text-darken-4">UPDATE</button>
+		    </div>
+		</form>
+	</div>
+{% endfor %}
+{% endblock %}

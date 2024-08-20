@@ -1,0 +1,26 @@
+{% extends "layout_user.html" %}
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col s12 center">
+			<h5 style="text-transform: uppercase; font-weight: bold; text-decoration: underline;">{{departmentDetails['name']}} - LECTURES</h5>
+		</div>
+		{% for i in lectureList %}
+    		<div class="col l3 card hide-on-med-and-down" style="margin:2rem; padding:0;">
+		        <div class="card-image">
+		        	<img src="{{lectureList[i]['imgUrl']}}" style="width:100%; height: 12rem;">
+		        </div>
+	          	<div class="card-content" style="padding: .5rem">
+	            	<p class="grey-text text-darken-3" style="font-weight: bold; margin:0; text-transform: capitalize;">{{lectureList[i]['name']}}</p>
+	            	<p class="indigo-text text-darken-4" style="font-weight: bold; text-transform: capitalize;">{{lectureList[i]['designation']}}</p>
+	          	</div>
+	          	<div class="card-action" style="padding-left : .5rem; padding-right : .5rem;">
+	            	<a href="{{url_for('userLectureProfile', lectureID=i)}}">MORE DETAILS</a>
+	          	</div>
+        	</div>
+        {% endfor %}
+	</div>
+</div>
+
+{% endblock %}

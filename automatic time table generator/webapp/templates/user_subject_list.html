@@ -1,0 +1,32 @@
+{% extends "layout_user.html" %}
+{% block content %}
+
+<div class="row">
+	<div class="col s12 center">
+		<h5 class="white-text" style="text-transform: uppercase; font-weight: bold; text-decoration: underline;">{{departmentDetails['name']}} - SEMESTER {{semester}}</h5>
+	</div>
+	<div class="col l8 s10 offset-l2 offset-s1">
+		<table class="centered highlight">
+			<thead>
+				<tr>
+					<th>SUBJECT ID</th>
+					<th>Name</th>
+					<th>Hours</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for i in subjectList %}
+					<tr style="font-weight: 500;" class="blue-grey-text text-lighten-2">
+						<td>{{i}}</td>
+						<td style="text-transform: capitalize;">{{subjectList[i]['name']}}</td>
+						<td style="text-transform: capitalize;">{{subjectList[i]['hours']}}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+{% endblock %}

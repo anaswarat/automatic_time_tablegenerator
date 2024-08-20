@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{% if session == 'admin' %}
+		<title>Admin - Automatic Time Table Generator</title>
+	{% elif session == 'user' %}
+		<title>Lecture - Automatic Time Table Generator</title>
+	{% endif %}
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/index.css">
+<style>
+	#login_email
+	{
+	  border-radius: 18px;
+    padding: 20px;
+    width: 200px;
+    height: 15px;
+}
+	.btn
+	{
+font-size: 14px;
+width:70px;
+}
+
+#login_password
+	{
+	  border-radius: 18px;
+    padding: 20px;
+    width: 200px;
+    height: 15px;
+}
+
+</style>
+</head>
+<body>
+	<nav>
+		<div class="nav-wrapper blue-grey darken-4">
+				{% if session == 'admin' %}
+		     	<a href="{{url_for('adminHome')}}" class="brand-logo brand-title-l hide-on-med-and-down">AUTOMATIC TIME TABLE GENERATOR</a>
+		      <a href="{{url_for('adminHome')}}" class="brand-logo brand-title-m hide-on-large-only left">AUTOMATIC TIME TABLE GENERATOR</a>
+		    {% elif session == 'lecture' %}
+		    	<a href="{{url_for('lectureHome')}}" class="brand-logo brand-title-l hide-on-med-and-down">AUTOMATIC TIME TABLE GENERATOR</a>
+		      <a href="{{url_for('lectureHome')}}" class="brand-logo brand-title-m hide-on-large-only left">AUTOMATIC TIME TABLE GENERATOR</a>
+		    {% endif %}
+		</div>
+	</nav>
+<div class="row">
+    <div class="col" style="margin-top:2rem;">
+	    <div class="row">
+	    	{% if warning != '' %}
+					<div class="col s10 offset-s2">
+						<p class="red-text" style="font-weight: bold;">{{warning}}</p>
+					</div>
+				{% endif %}
+	     	<div class="col s10 offset-s1 center"  style=" margin-left:-50px">
+	     		{% if session == 'lecture' %}
+	     			<h5 class="indigo-text text-darken-4" style="font-weight: 600;">LECTURE SIGN IN</h5>
+	     		{% elif session == 'admin' %}
+	     			<h5 class="indigo-text text-darken-4" style="font-weight: 600;">ADMIN SIGN IN</h5>
+	     		{% endif %}
+	     	</div>
+	     	<form action="{{url_for('login')}}" method="post">
+	     		<div class="input-field col s10 offset-s1">
+		          <i class="material-icons prefix">email</i>
+		          <input id="login_email" type="text" class="validate"  size="50" name="username" required placeholder="Email">
+		      </div>
+
+		      <div class="input-field col s10 offset-s1">
+			          <i class="material-icons prefix">lock</i>
+			          <input id="login_password" type="password" class="validate" name="password" placeholder="Password" required>
+		      </div>
+	      	<div class="col s10 offset-s1 center" align="left" style="margin-bottom: 1rem; margin-top: 1rem; margin-left:-50px">
+	      		<input type="hidden" name="cat" value="{{session}}">
+	        	<button class="btn indigo darken-4" id="btn" type="submit" style="width:50%; align:justify;  font-weight: 600; border-radius: 12px; ">LOGIN</button>
+	        </div>
+      	</form>
+    	</div>
+    </div>    
+</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>    
+
+</body>
+</html>

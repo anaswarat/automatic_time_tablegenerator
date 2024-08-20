@@ -1,0 +1,74 @@
+{% extends "layout_user.html" %}
+{% block content %}
+
+
+
+    <style type="text/css">
+        /* Existing CSS styles */
+
+        /* Additional styles for the form */
+        .feedback-form {
+          width: 600px;
+          margin: 0 auto;
+          padding: 40px;
+          background-color: #fff;
+          border-radius: 8px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          margin-top: 40px;
+        }
+
+        .feedback-form h2 {
+          font-size: 24px;
+          text-align: center;
+          margin-bottom: 30px;
+        }
+
+        .feedback-form label {
+          font-size: 16px;
+          display: block;
+          margin-bottom: 10px;
+        }
+
+        .feedback-form input[type="text"],
+        .feedback-form textarea {
+          width: 100%;
+          padding: 10px;
+          font-size: 16px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          margin-bottom: 20px;
+        }
+
+        .feedback-form button {
+          display: block;
+          width: 100%;
+          padding: 12px;
+          font-size: 16px;
+          color: #fff;
+          background-color: #007bff;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+    </style>
+
+    <div style="width: 960px; margin: 0 auto; padding-top: 80px; padding-bottom: 80px;">    
+        <hr style="margin: 60px auto; opacity: 7.5;">
+        <!-- Feedback form -->
+        <div class="feedback-form">
+            <h2>Give Feedback</h2>
+            <form action="{{url_for('feedbackReg')}}" method="post">
+                <label for="name" style="color:black;">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" style="color:black;">
+                <label for="text" style="color:black;">Personal Details</label>
+                <input type="text" id="details" name="details" placeholder="Enter your Personal Details" style="color:black;">
+                <label for="message" style="color:black;">Your Feedback</label>
+                <textarea id="message" name="feedback" rows="5" placeholder="Enter your feedback" style="color:black;"></textarea>
+                <button type="submit">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+
+
+
+{% endblock %}

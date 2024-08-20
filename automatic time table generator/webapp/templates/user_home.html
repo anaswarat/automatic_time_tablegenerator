@@ -1,0 +1,36 @@
+{% extends "layout_user.html" %}
+{% block content %}
+
+<div class="row">
+	<div class="col l8 s10 offset-l2 offset-s1">
+		<table class="centered highlight">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Semesters</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for i in departmentList %}
+					<tr style="font-weight: 500;" class="blue-grey-text text-lighten-2">
+						<td style="text-transform: capitalize; font-weight: bold;">{{departmentList[i]['name']}}</td>
+						<td style="text-transform: capitalize; font-weight: bold;">{{departmentList[i]['semCount']}}</td>
+						<td>
+							<a href="{{url_for('userDeptSemesterList',deptID=i)}}" class="btn indigo darken-4">SUBJECTS</a>
+						</td>
+						<td>
+							<a href="{{url_for('userLectureList',deptID=i)}}" class="btn indigo darken-4">LECTURES</a>
+						</td>
+						<td>
+							<a href="{{url_for('userTimeTable',deptID=i)}}" id="h" class="btn red">TIME TABLE</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+{% endblock %}

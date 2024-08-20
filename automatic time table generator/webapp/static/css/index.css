@@ -1,0 +1,29 @@
+.brand-title-l{
+	padding-left: 1rem !important;
+	font-size: 2rem !important ;
+}
+
+.brand-title-m{
+	font-size: 1.3rem !important ;
+}
+
+.nav-item{
+	font-size: 1.3rem;
+}
+i{
+	color: #1a237e;
+}
+
+*
+{
+font-family:'Poppins',sans-serif;
+}
+body{
+	background-image:url('https://wallpaperaccess.com/full/4802547.jpg');
+	background-size:cover;
+}
+
+
+
+
+
